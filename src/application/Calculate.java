@@ -6,15 +6,31 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+/**
+ *
+ *
+ * @author Pasut Kittipapras
+ * @author Theeruth Borisuth
+ * @author Poorin Pitchayamongkol
+ */
 public class Calculate {
 
+	/**
+	 * This method will get the ip by using InetAddress package. Catch exception if the it cannot find.
+	 * @param host
+	 * @return list of ip address
+	 */
 	public List<String> getIP(String host) {
 		InetAddress[] ip;
-		List<String> listOfIP = new ArrayList<String>();
+		List<String> listOfIP = new ArrayList<>();
 		try {
 			ip = InetAddress.getAllByName(host);
-			for (int i = 0; i < ip.length; i++) {
-				String hostAddress = ip[i].getHostAddress();
+//			for (int i = 0; i < ip.length; i++) {
+//				String hostAddress = ip[i].getHostAddress();
+//				listOfIP.add(">> " +hostAddress+"\n     "+"Ping RTT: " + pingCheckerIP(hostAddress) + " ms.");
+//			}
+			for (InetAddress i: ip){
+				String hostAddress = i.getHostAddress();
 				listOfIP.add(">> " +hostAddress+"\n     "+"Ping RTT: " + pingCheckerIP(hostAddress) + " ms.");
 			}
 		} catch (UnknownHostException e) {
@@ -23,29 +39,43 @@ public class Calculate {
 		return listOfIP;
 	}
 
+	/**
+	 * Get the IP address of the local host. catch exception if it cannot find the local host.
+	 * @return
+	 */
 	public String getIPofLocalHost() {
 		InetAddress ip;
 		try {
 			ip = InetAddress.getLocalHost();
-			String myIP = ">> "+ip.getHostAddress() +"\n";
+			String myIP = ">> Your IP: "+ip.getHostAddress() +"\n";
 			return myIP;
 		} catch (UnknownHostException e) {
 			return "Cannot find localhost";
 		}
 	}
 
+	/**
+	 * Check the latency of that IP address with given 5 seconds. If it's pass 5 seconds and it still not return the ping.
+	 * That's mean its unreachable.
+	 * @param ip
+	 * @return
+	 */
 	public long pingCheckerIP(String ip) {
+		long finish ;
+		long ping;
+
 		try {
 		      String ipAddress = ip;
 		      InetAddress inet = InetAddress.getByName(ipAddress);
 		      
-		      long finish = 0;
+
 		      long start = new GregorianCalendar().getTimeInMillis();
 		 
 		      if (inet.isReachable(5000)){
 		        finish = new GregorianCalendar().getTimeInMillis();
-		        long ping = finish - start;
-		        return ping;
+				  ping = finish - start;
+				  System.out.println(ping);
+				  return ping;
 		      } else {
 		        System.out.println(ipAddress + " NOT reachable.");
 		      }

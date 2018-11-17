@@ -6,11 +6,14 @@ import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-
+/**
+ * @author Pasut Kittipapras
+ * @author Theeruth Borisuth
+ * @author Poorin Pitchayamongkol
+ */
 public class Controller {
 
 	@FXML
@@ -24,9 +27,7 @@ public class Controller {
 	@FXML
 	TextArea result;
 
-	List<Label> labels;
-
-	Calculate cal = new Calculate();
+	private Calculate cal = new Calculate();
 
 	@FXML
 	public void initialize() {
@@ -34,14 +35,17 @@ public class Controller {
 		getMyIP.setOnAction(this::getMyIP);
 	}
 
-	public void getIP(ActionEvent event) {
+	private void getIP(ActionEvent event) {
 		clearTextArea();
 		String hostname = host.getText().trim();
+//		if(!hostname.contains("www.") && !hostname.contains(".com")) {
+//			hostname = "www."+hostname+".com";
+//		}
 		hostnameShow.setText(hostname);
-		List<String> listOfIP = new ArrayList<>();
-		listOfIP.addAll(cal.getIP(hostname));
+		List<String> listOfIP = new ArrayList<>(cal.getIP(hostname));
 		int countServer = listOfIP.size();
 		if (listOfIP.get(0).contains("Cannot")) {
+			//do nothing
 		} else {
 			listOfIP.clear();
 			listOfIP.add("Hostname: " + hostname);
@@ -61,14 +65,14 @@ public class Controller {
 		result.appendText(sb.toString());
 	}
 
-	public void getMyIP(ActionEvent event) {
+	private void getMyIP(ActionEvent event) {
 		clearTextArea();
 		hostnameShow.setText("Localhost");
 		result.appendText(cal.getIPofLocalHost());
 
 	}
 	
-	public void clearTextArea(){
+	private void clearTextArea(){
 		result.clear();
 	}
 }
