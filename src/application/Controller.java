@@ -41,6 +41,7 @@ public class Controller {
 //		if(!hostname.contains("www.") && !hostname.contains(".com")) {
 //			hostname = "www."+hostname+".com";
 //		}
+
 		hostnameShow.setText(hostname);
 		List<String> listOfIP = new ArrayList<>(cal.getIP(hostname));
 		int countServer = listOfIP.size();

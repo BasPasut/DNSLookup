@@ -39,27 +39,27 @@ public class Calculate {
 		return listOfIP;
 	}
 
-	/**
-	 * Check whether the string is a valid url or not.
-	 * @param url : specific url
-	 * @return true if it's valid else it's will be false.
-	 */
-	public static boolean isValid(String url)
-	{
-
-		url = "http://"+url;
-		/* Try creating a valid URL */
-		try {
-			new URL(url).toURI();
-			return true;
-		}
-
-		// If there was an Exception
-		// while creating URL object
-		catch (Exception e) {
-			return false;
-		}
-	}
+//	/**
+//	 * Check whether the string is a valid url or not.
+//	 * @param url : specific url
+//	 * @return true if it's valid else it's will be false.
+//	 */
+//	public static boolean isValid(String url)
+//	{
+//
+//		url = "http://"+url;
+//		/* Try creating a valid URL */
+//		try {
+//			new URL(url).toURI();
+//			return true;
+//		}
+//
+//		// If there was an Exception
+//		// while creating URL object
+//		catch (Exception e) {
+//			return false;
+//		}
+//	}
 
 	/**
 	 * Get the IP address of the local host. catch exception if it cannot find the local host.
