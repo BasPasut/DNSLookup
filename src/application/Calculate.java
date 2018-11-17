@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  *
+ *Get IP address of the specific address or check your own local host.
  *
  * @author Pasut Kittipapras
  * @author Theeruth Borisuth
@@ -25,10 +26,6 @@ public class Calculate {
 		List<String> listOfIP = new ArrayList<>();
 		try {
 			ip = InetAddress.getAllByName(host);
-//			for (int i = 0; i < ip.length; i++) {
-//				String hostAddress = ip[i].getHostAddress();
-//				listOfIP.add(">> " +hostAddress+"\n     "+"Ping RTT: " + pingCheckerIP(hostAddress) + " ms.");
-//			}
 			for (InetAddress i: ip){
 				String hostAddress = i.getHostAddress();
 				listOfIP.add(">> " +hostAddress+"\n     "+"Ping RTT: " + pingCheckerIP(hostAddress) + " ms.");
