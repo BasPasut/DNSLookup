@@ -25,13 +25,10 @@ public class Calculate {
 		List<String> listOfIP = new ArrayList<>();
 		try {
 			ip = InetAddress.getAllByName(host);
-//			for (int i = 0; i < ip.length; i++) {
-//				String hostAddress = ip[i].getHostAddress();
-//				listOfIP.add(">> " +hostAddress+"\n     "+"Ping RTT: " + pingCheckerIP(hostAddress) + " ms.");
-//			}
 			for (InetAddress i: ip){
 				String hostAddress = i.getHostAddress();
-				listOfIP.add(">> " +hostAddress+"\n     "+"Ping RTT: " + pingCheckerIP(hostAddress) + " ms.");
+				listOfIP.add(">> " +hostAddress+"\n     ");
+				//+"Ping RTT: " + pingCheckerIP(hostAddress) + " ms."
 			}
 		} catch (UnknownHostException e) {
 			listOfIP.add("Cannot find " + host);
@@ -67,14 +64,12 @@ public class Calculate {
 		try {
 		      String ipAddress = ip;
 		      InetAddress inet = InetAddress.getByName(ipAddress);
-		      
 
 		      long start = new GregorianCalendar().getTimeInMillis();
 		 
 		      if (inet.isReachable(5000)){
 		        finish = new GregorianCalendar().getTimeInMillis();
 				  ping = finish - start;
-				  System.out.println(ping);
 				  return ping;
 		      } else {
 		        System.out.println(ipAddress + " NOT reachable.");
