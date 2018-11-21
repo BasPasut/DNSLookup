@@ -8,18 +8,6 @@ import java.util.List;
 
 public class TraceRoute {
 
-    private String name ;
-    private double value ;
-
-    /**
-     * Constructor of Temperature initialize with value of unit.
-     * @param value
-     */
-    private TraceRoute(String name, double value){
-        this.name = name ;
-        this.value = value ;
-    }
-
     public String trackOS(){
         String os = System.getProperty("os.name").toLowerCase();
         if (os.contains("win")){
@@ -45,7 +33,7 @@ public class TraceRoute {
             String line;
 
             if (p == null)
-                output.add("Cannot connect");
+                output.add("Cannot connect"); 	
 
             while ((line = in.readLine()) != null) {
 

@@ -17,9 +17,9 @@ import javafx.scene.text.Text;
 public class Controller {
 
 	@FXML
-	Button getIP;
+	Button sol1;
 	@FXML
-	Button getMyIP;
+	Button sol2;
 	@FXML
 	TextField host;
 	@FXML
@@ -28,41 +28,69 @@ public class Controller {
 	TextArea result;
 	@FXML
 	Menu tool;
+	@FXML
+	Text title;
 
 	private DnsLookup cal = new DnsLookup();
-	//variables
-	private final ToolType  DEFAULT_TYPE = ToolType.DNSLOOKUP;
+	private TraceRoute trace = new TraceRoute();
+	// variables
+	private final ToolType DEFAULT_TYPE = ToolType.DNSLOOKUP;
 	private ToolFactory factory = ToolFactory.getInstance();
 
 	@FXML
 	public void initialize() {
-		/**add Unit type into the menu**/
-		for (ToolType ut : factory.getToolTypes()){
+		/** add Unit type into the menu **/
+		for (ToolType ut : factory.getToolTypes()) {
 			MenuItem currentItem = new MenuItem(ut.getName());
 			currentItem.setOnAction(new EventListener(ut));
-			tool.getItems().add(0,currentItem);
+			tool.getItems().add(0, currentItem);
 		}
 
-		getIP.setOnAction(this::getIP);
-		getMyIP.setOnAction(this::getMyIP);
+		sol1.setOnAction(this::Tool1);
+		sol2.setOnAction(this::Tool2);
 	}
 
-	private void getIP(ActionEvent event) {
+	private void Tool1(ActionEvent event) {
 		clearTextArea();
 		String hostname = host.getText().trim();
 		hostnameShow.setText(hostname);
-		List<String> listOfIP = new ArrayList<>(cal.getIP(hostname));
-		int countServer = listOfIP.size();
+		List<String> listOfIP;
+		int countServer = 0;
+		if (title.getText().equalsIgnoreCase("dnslookup")) {
+			listOfIP = new ArrayList<>(cal.getIP(hostname));
+			countServer = listOfIP.size();
+		} else {
+			listOfIP = new ArrayList<>(trace.traceRoute(hostname));
+		}
 		if (listOfIP.get(0).contains("Cannot")) {
-			//do nothing
+			// do nothing
 		} else {
 			listOfIP.clear();
-			listOfIP.add("Hostname: " + hostname);
-			listOfIP.add("Number of Server: " + countServer + "\n");
-			listOfIP.addAll(cal.getIP(hostname));
+			if (title.getText().equalsIgnoreCase("dnslookup")) {
+				listOfIP.add("Number of Server: " + countServer + "\n");
+				listOfIP.addAll(cal.getIP(hostname));
+			} else {
+				listOfIP.addAll(trace.traceRoute(hostname));
+			}
 		}
+		appendTexttoResult(listOfIP);
+	}
+
+	private void Tool2(ActionEvent event) {
+		clearTextArea();
+		hostnameShow.setText("Localhost");
+		if (title.getText().equalsIgnoreCase("dnslookup")) {
+			result.appendText(cal.getIPofLocalHost());
+		} else {
+			List<String> traceOutput = new ArrayList<>();
+			traceOutput.addAll(trace.traceRoute("localhost"));
+			appendTexttoResult(traceOutput);
+		}
+	}
+
+	private void appendTexttoResult(List<String> list){
 		StringBuilder sb = new StringBuilder();
-		for (String text : listOfIP) {
+		for (String text : list) {
 
 			if (sb.length() > 0) {
 				sb.append("\n");
@@ -73,36 +101,25 @@ public class Controller {
 
 		result.appendText(sb.toString());
 	}
-
-	private void getMyIP(ActionEvent event) {
-		clearTextArea();
-		hostnameShow.setText("Localhost");
-		result.appendText(cal.getIPofLocalHost());
-
-	}
 	
-	private void traceRoute(ActionEvent event){
-
-	}
-
-	
-	private void clearTextArea(){
+	private void clearTextArea() {
 		result.clear();
 	}
 
 	/**
 	 * this anonymous class is for setting up the comboBox
+	 * 
 	 * @author Theeruth Borisuth
 	 *
 	 */
 	class EventListener implements EventHandler<ActionEvent> {
 
-		//variables
-		private ToolType type ;
+		// variables
+		private ToolType type;
 
-		//constructor
+		// constructor
 		public EventListener(ToolType units) {
-			this.type = units ;
+			this.type = units;
 		}
 
 		/**
@@ -110,7 +127,18 @@ public class Controller {
 		 */
 		@Override
 		public void handle(ActionEvent event) {
+			if (type.getName().equalsIgnoreCase("dnslookup")) {
+				clearTextArea();
+				title.setText("DNSLookup");
+				sol1.setText("Get Addresses");
+				sol2.setText("Get My IP");
+			} else if (type.getName().equalsIgnoreCase("traceroute")) {
+				clearTextArea();
+				title.setText("Trace Route");
+				sol1.setText("Trace Host");
+				sol2.setText("Trace My IP");
 
+			}
 		}
 	}
 }

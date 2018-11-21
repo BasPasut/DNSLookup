@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="bodybg" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="bodybg" stylesheets="@application.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <children>
       <MenuBar prefWidth="800.0">
         <menus>
@@ -26,7 +26,7 @@
       </MenuBar>
       <VBox alignment="CENTER" prefHeight="140.0" prefWidth="621.0">
          <children>
-            <Text fill="#fff000" strokeType="OUTSIDE" strokeWidth="0.0" text="Find IP from Hostname">
+            <Text fx:id="title" fill="#fff000" strokeType="OUTSIDE" strokeWidth="0.0" text="DNS Lookup">
                <font>
                   <Font name="Monospaced Bold" size="40.0" />
                </font>
@@ -54,14 +54,14 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="70.0" prefWidth="600.0">
          <children>
-            <Button fx:id="getIP" mnemonicParsing="false" prefHeight="36.0" prefWidth="103.0" text="Get Addresses">
+            <Button fx:id="sol1" mnemonicParsing="false" prefHeight="22.0" prefWidth="182.0" text="Get Addresses">
                <HBox.margin>
                   <Insets right="50.0" />
                </HBox.margin>
                <font>
                   <Font name="Monospaced Bold" size="16.0" />
                </font></Button>
-            <Button fx:id="getMyIP" mnemonicParsing="false" text="Get My IP">
+            <Button fx:id="sol2" mnemonicParsing="false" prefHeight="22.0" prefWidth="146.0" text="Get My IP">
                <HBox.margin>
                   <Insets left="80.0" />
                </HBox.margin>
