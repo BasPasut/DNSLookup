@@ -15,7 +15,7 @@ import java.net.*;
  * @author Theeruth Borisuth
  * @author Poorin Pitchayamongkol
  */
-public class Calculate {
+public class DnsLookup {
 
 	/**
 	 * This method will get the ip by using InetAddress package. Catch exception
@@ -85,45 +85,5 @@ public class Calculate {
 			System.out.println("Exception:" + e.getMessage());
 		}
 		return 0;
-	}
-
-	public String trackOS(){
-		String os = System.getProperty("os.name").toLowerCase();
-		if (os.contains("win")){
-		    return "tracert";
-		}
-		else if (os.contains("osx")){
-		    return "trace";
-		}
-		return null;
-	}
-	
-	public List<String> traceRoute(String host) {
-		List<String> output = new ArrayList<>();
-		BufferedReader in;
-
-		try {
-			Runtime r = Runtime.getRuntime();
-			String os = trackOS();
-			Process p = r.exec(os+" "+host);
-
-			in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-
-			String line;
-
-			if (p == null)
-				output.add("Cannot connect");
-
-			while ((line = in.readLine()) != null) {
-
-				output.add(line);
-			}
-
-		} catch (IOException e) {
-
-			System.out.println(e.toString());
-
-		}
-		return output;
 	}
 }

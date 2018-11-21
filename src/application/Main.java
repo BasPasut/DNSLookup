@@ -24,13 +24,15 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("UI.fxml"));
-			Scene scene = new Scene(root);
+			//Parent root2 = FXMLLoader.load(getClass().getResource("UI.fxml"));
+			Scene dnsLookup = new Scene(root);
+			//Scene scene = new Scene(root)
 			setUserAgentStylesheet(STYLESHEET_MODENA);
 			primaryStage.getIcons().add(new Image("file:icon.png"));
-			primaryStage.setScene(scene);
+			primaryStage.setScene(dnsLookup);
 			primaryStage.sizeToScene();
 			primaryStage.show();
-			primaryStage.setTitle("DNSLookUP");
+			primaryStage.setTitle("Internet Tool");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

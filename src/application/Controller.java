@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
+
 /**
  * @author Pasut Kittipapras
  * @author Theeruth Borisuth
@@ -28,14 +27,22 @@ public class Controller {
 	@FXML
 	TextArea result;
 	@FXML
-	MenuItem dns;
-	@FXML
-	MenuItem trace;
+	Menu tool;
 
-	private Calculate cal = new Calculate();
+	private DnsLookup cal = new DnsLookup();
+	//variables
+	private final ToolType  DEFAULT_TYPE = ToolType.DNSLOOKUP;
+	private ToolFactory factory = ToolFactory.getInstance();
 
 	@FXML
 	public void initialize() {
+		/**add Unit type into the menu**/
+		for (ToolType ut : factory.getToolTypes()){
+			MenuItem currentItem = new MenuItem(ut.getName());
+			currentItem.setOnAction(new EventListener(ut));
+			tool.getItems().add(0,currentItem);
+		}
+
 		getIP.setOnAction(this::getIP);
 		getMyIP.setOnAction(this::getMyIP);
 	}
@@ -43,9 +50,6 @@ public class Controller {
 	private void getIP(ActionEvent event) {
 		clearTextArea();
 		String hostname = host.getText().trim();
-//		if(!hostname.contains("www.") && !hostname.contains(".com")) {
-//			hostname = "www."+hostname+".com";
-//		}
 		hostnameShow.setText(hostname);
 		List<String> listOfIP = new ArrayList<>(cal.getIP(hostname));
 		int countServer = listOfIP.size();
@@ -77,12 +81,36 @@ public class Controller {
 
 	}
 	
-//	private void traceRoute(ActionEvent event){
-//		
-//	}
+	private void traceRoute(ActionEvent event){
+
+	}
 
 	
 	private void clearTextArea(){
 		result.clear();
+	}
+
+	/**
+	 * this anonymous class is for setting up the comboBox
+	 * @author Theeruth Borisuth
+	 *
+	 */
+	class EventListener implements EventHandler<ActionEvent> {
+
+		//variables
+		private ToolType type ;
+
+		//constructor
+		public EventListener(ToolType units) {
+			this.type = units ;
+		}
+
+		/**
+		 * A method for setting up comboBox.
+		 */
+		@Override
+		public void handle(ActionEvent event) {
+
+		}
 	}
 }
