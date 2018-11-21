@@ -26,7 +26,7 @@
       </MenuBar>
       <VBox alignment="CENTER" prefHeight="140.0" prefWidth="621.0">
          <children>
-            <Text fx:id="title" fill="#fff000" strokeType="OUTSIDE" strokeWidth="0.0" text="DNS Lookup">
+            <Text fx:id="title" fill="#fff000" strokeType="OUTSIDE" strokeWidth="0.0" text="DNSLookup">
                <font>
                   <Font name="Monospaced Bold" size="40.0" />
                </font>

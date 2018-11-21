@@ -13,8 +13,8 @@ public class TraceRoute {
         if (os.contains("win")){
             return "tracert";
         }
-        else if (os.contains("osx")){
-            return "trace";
+        else if (os.contains("mac")){
+            return "traceroute";
         }
         return null;
     }
