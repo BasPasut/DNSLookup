@@ -6,6 +6,7 @@ import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -26,6 +27,10 @@ public class Controller {
 	Text hostnameShow;
 	@FXML
 	TextArea result;
+	@FXML
+	MenuItem dns;
+	@FXML
+	MenuItem trace;
 
 	private Calculate cal = new Calculate();
 
@@ -71,6 +76,11 @@ public class Controller {
 		result.appendText(cal.getIPofLocalHost());
 
 	}
+	
+//	private void traceRoute(ActionEvent event){
+//		
+//	}
+
 	
 	private void clearTextArea(){
 		result.clear();
