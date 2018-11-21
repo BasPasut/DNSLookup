@@ -39,6 +39,7 @@ public class Controller {
 
 	@FXML
 	public void initialize() {
+		result.setStyle("-fx-text-inner-color: white;");
 		/** add Unit type into the menu **/
 		for (ToolType ut : factory.getToolTypes()) {
 			MenuItem currentItem = new MenuItem(ut.getName());

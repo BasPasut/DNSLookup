@@ -1,4 +1,35 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 .bodybg{
-	-fx-background-image:url("wall.jpg");
+	-fx-background-image:url("sombra.gif");
+	-fx-background-size: cover;
+}
+
+.text-area {
+    -fx-background-color: black;
+    -fx-text-color: white;
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+.menu-bar {
+    -fx-background-color: white;
+    -fx-font-color: black;
+    -fx-opacity: 0.4;
+}
+
+
+.menu-item {
+    -fx-padding: 0em 0em 0em 0em;
+    -fx-text-fill: white;
 }
