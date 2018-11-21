@@ -1,12 +1,12 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 .bodybg{
-	-fx-background-image:url("sombra.gif");
+	-fx-background-image:url("wall.jpg");
 	-fx-background-size: cover;
 }
 
 .text-area {
     -fx-background-color: black;
-    -fx-text-color: white;
+    -fx-text-fill: white;
 }
 
 .text-area .scroll-pane {
@@ -23,13 +23,12 @@
 }
 
 .menu-bar {
-    -fx-background-color: white;
-    -fx-font-color: black;
-    -fx-opacity: 0.4;
+    -fx-background-color: black;
+    -fx-opacity: 0.8;
 }
 
 
 .menu-item {
-    -fx-padding: 0em 0em 0em 0em;
+    -fx-padding: 1em 1em 1em 1em;
     -fx-text-fill: white;
 }
