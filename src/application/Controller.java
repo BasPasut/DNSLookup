@@ -2,7 +2,9 @@ package application;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -32,7 +34,7 @@ public class Controller {
 	Text title;
 
 	private DnsLookup cal = new DnsLookup();
-	private TraceRoute trace = new TraceRoute();
+	private Task<String> trace;
 	// variables
 	private final ToolType DEFAULT_TYPE = ToolType.DNSLOOKUP;
 	private ToolFactory factory = ToolFactory.getInstance();
@@ -54,14 +56,16 @@ public class Controller {
 	private void Tool1(ActionEvent event) {
 		clearTextArea();
 		String hostname = host.getText().trim();
+		trace = new TraceRoute(hostname);
 		hostnameShow.setText(hostname);
-		List<String> listOfIP;
 		int countServer = 0;
+		List<String> listOfIP = new ArrayList<>(cal.getIP(hostname));;
 		if (title.getText().equalsIgnoreCase("dnslookup")) {
-			listOfIP = new ArrayList<>(cal.getIP(hostname));
 			countServer = listOfIP.size();
 		} else {
-			listOfIP = new ArrayList<>(trace.traceRoute(hostname));
+			ExecutorService executor = Executors.newFixedThreadPool(2);
+			result.textProperty().bind(trace.messageProperty());
+			executor.execute(trace);
 		}
 		if (listOfIP.get(0).contains("Cannot")) {
 			// do nothing
@@ -70,11 +74,9 @@ public class Controller {
 			if (title.getText().equalsIgnoreCase("dnslookup")) {
 				listOfIP.add("Number of Server: " + countServer + "\n");
 				listOfIP.addAll(cal.getIP(hostname));
-			} else {
-				listOfIP.addAll(trace.traceRoute(hostname));
+				appendTexttoResult(listOfIP);
 			}
 		}
-		appendTexttoResult(listOfIP);
 	}
 
 	private void Tool2(ActionEvent event) {
@@ -83,9 +85,7 @@ public class Controller {
 		if (title.getText().equalsIgnoreCase("dnslookup")) {
 			result.appendText(cal.getIPofLocalHost());
 		} else {
-			List<String> traceOutput = new ArrayList<>();
-			traceOutput.addAll(trace.traceRoute("localhost"));
-			appendTexttoResult(traceOutput);
+			result.textProperty().bind(trace.messageProperty());
 		}
 	}
 

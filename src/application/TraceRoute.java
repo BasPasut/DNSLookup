@@ -6,45 +6,80 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TraceRoute {
+import javafx.concurrent.Task;
 
-    public String trackOS(){
-        String os = System.getProperty("os.name").toLowerCase();
-        if (os.contains("win")){
-            return "tracert";
-        }
-        else if (os.contains("mac")){
-            return "traceroute";
-        }
-        return null;
-    }
+public class TraceRoute extends Task<String> {
+	
+	String hostname;
+	
+	public TraceRoute(String hostname){
+		this.hostname = hostname;
+	}
 
-    public List<String> traceRoute(String host) {
-        List<String> output = new ArrayList<>();
-        BufferedReader in;
+	public String trackOS() {
+		String os = System.getProperty("os.name").toLowerCase();
+		if (os.contains("win")) {
+			return "tracert";
+		} else if (os.contains("mac")) {
+			return "traceroute";
+		}
+		return null;
+	}
 
-        try {
-            Runtime r = Runtime.getRuntime();
-            String os = trackOS();
-            Process p = r.exec(os+" "+host);
+	// public List<String> traceRoute(String host) {
+	// List<String> output = new ArrayList<>();
+	// BufferedReader in;
+	//
+	// try {
+	// Runtime r = Runtime.getRuntime();
+	// String os = trackOS();
+	// Process p = r.exec(os+" "+host);
+	//
+	// in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+	//
+	// String line;
+	//
+	// if (p == null)
+	// output.add("Cannot connect");
+	//
+	// while ((line = in.readLine()) != null) {
+	//
+	// output.add(line);
+	// }
+	//
+	// } catch (IOException e) {
+	//
+	// System.out.println(e.toString());
+	//
+	// }
+	// return output;
+	// }
 
-            in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+	@Override
+	protected String call() throws Exception {
+		String os = trackOS();
 
-            String line;
+		BufferedReader in;
+		String line = null;
+		StringBuilder consoleContent = new StringBuilder();
 
-            if (p == null)
-                output.add("Cannot connect"); 	
+		try {
+			Runtime r = Runtime.getRuntime();
+			Process p = r.exec(os+ " " + hostname);
 
-            while ((line = in.readLine()) != null) {
+			in = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
-                output.add(line);
-            }
+			if (p == null)
+				updateMessage("Cannot connect");
 
-        } catch (IOException e) {
+			while ((line = in.readLine()) != null) {
+				consoleContent.append(line).append("\n");
+				updateMessage(consoleContent.toString());
+			}
 
-            System.out.println(e.toString());
-
-        }
-        return output;
-    }
+		} catch (IOException e) {
+			updateMessage(e.toString());
+		}
+		return line;
+	}
 }
