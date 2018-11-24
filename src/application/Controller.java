@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 /**
@@ -41,6 +42,8 @@ public class Controller {
 
 	@FXML
 	public void initialize() {
+		Font.loadFont(getClass().getResourceAsStream("/fonts/big_noodle_titling_oblique.ttf"), 14);
+		Font.loadFont(getClass().getResourceAsStream("/fonts/big_noodle_titling.ttf"), 14);
 		result.setStyle("-fx-text-inner-color: white;");
 		/** add Unit type into the menu **/
 		for (ToolType ut : factory.getToolTypes()) {
