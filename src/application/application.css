@@ -1,11 +1,12 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 .bodybg{
-	-fx-background-image:url("sombra.gif");
+	-fx-background-image:url("wall.jpg");
 	-fx-background-size: cover;
 }
 
 .text-area {
 	-fx-font-family: "BigNoodleTitling";
+	-fx-font-size: 24px;
     -fx-background-color: black;
     -fx-text-fill: white;
 }
