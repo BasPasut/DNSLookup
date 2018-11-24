@@ -56,22 +56,24 @@ public class Controller {
 	private void Tool1(ActionEvent event) {
 		clearTextArea();
 		String hostname = host.getText().trim();
-		trace = new TraceRoute(hostname);
 		hostnameShow.setText(hostname);
 		int countServer = 0;
 		List<String> listOfIP = new ArrayList<>(cal.getIP(hostname));;
 		if (title.getText().equalsIgnoreCase("dnslookup")) {
 			countServer = listOfIP.size();
 		} else {
+			trace = new TraceRoute(hostname);
 			ExecutorService executor = Executors.newFixedThreadPool(2);
 			result.textProperty().bind(trace.messageProperty());
 			executor.execute(trace);
+			executor.shutdown();
 		}
 		if (listOfIP.get(0).contains("Cannot")) {
 			// do nothing
 		} else {
 			listOfIP.clear();
 			if (title.getText().equalsIgnoreCase("dnslookup")) {
+				listOfIP.add("Hostname: "+ hostname);
 				listOfIP.add("Number of Server: " + countServer + "\n");
 				listOfIP.addAll(cal.getIP(hostname));
 				appendTexttoResult(listOfIP);
@@ -82,10 +84,14 @@ public class Controller {
 	private void Tool2(ActionEvent event) {
 		clearTextArea();
 		hostnameShow.setText("Localhost");
+		trace = new TraceRoute("Localhost");
 		if (title.getText().equalsIgnoreCase("dnslookup")) {
 			result.appendText(cal.getIPofLocalHost());
 		} else {
+			ExecutorService executor = Executors.newFixedThreadPool(2);
 			result.textProperty().bind(trace.messageProperty());
+			executor.execute(trace);
+			executor.shutdown();
 		}
 	}
 
@@ -128,17 +134,16 @@ public class Controller {
 		 */
 		@Override
 		public void handle(ActionEvent event) {
+			clearTextArea();
 			if (type.getName().equalsIgnoreCase("dnslookup")) {
-				clearTextArea();
+				result.textProperty().unbind();
 				title.setText("DNSLookup");
 				sol1.setText("Get Addresses");
 				sol2.setText("Get My IP");
-			} else if (type.getName().equalsIgnoreCase("traceroute")) {
-				clearTextArea();
+			} if (type.getName().equalsIgnoreCase("traceroute")) {
 				title.setText("Trace Route");
 				sol1.setText("Trace Host");
 				sol2.setText("Trace My IP");
-
 			}
 		}
 	}

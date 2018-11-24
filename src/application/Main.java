@@ -25,7 +25,7 @@ public class Main extends Application {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("UI.fxml"));
 			Scene dnsLookup = new Scene(root);
-			setUserAgentStylesheet(STYLESHEET_MODENA);
+			setUserAgentStylesheet(STYLESHEET_CASPIAN);
 			primaryStage.getIcons().add(new Image("file:icon.png"));
 			primaryStage.setScene(dnsLookup);
 			primaryStage.sizeToScene();
