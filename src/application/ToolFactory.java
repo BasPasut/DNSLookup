@@ -1,5 +1,13 @@
 package application;
-
+/**
+ * 
+ * factory of each tool.
+ * 
+ * @author Pasut Kittipapras
+ * @author Theeruth Borisuth
+ * @author Poorin Pitchayamongkol
+ *
+ */
 public class ToolFactory {
 
     public static ToolFactory instance = new ToolFactory();
@@ -10,7 +18,7 @@ public class ToolFactory {
     private ToolFactory(){}
 
     /**
-     * Get the string of the unit
+     * Get the string of the tool
      * @return
      */
     public ToolType[] getToolTypes(){

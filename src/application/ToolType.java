@@ -1,5 +1,9 @@
 package application;
-
+/**
+ * and enum class. For spliting tools.
+ * @author theeruthborisuth
+ *
+ */
 public enum ToolType {
     TRACEROUTE("TraceRoute"),
     DNSLOOKUP("DnsLookup");
@@ -7,7 +11,7 @@ public enum ToolType {
     private String name ;
 
     /**
-     * constructor of UnitType class
+     * constructor of ToolType class
      * @param name
      */
     private ToolType(String name) {
@@ -15,7 +19,7 @@ public enum ToolType {
     }
 
     /**
-     * return the name of the unit
+     * return the name of the Tool
      * @return name
      */
     public String getName(){

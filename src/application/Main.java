@@ -34,7 +34,10 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * Run the program
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

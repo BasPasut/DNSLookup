@@ -7,15 +7,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.concurrent.Task;
-
+/**
+ * 
+ * This class is the heart of the traceroute calucalating process.
+ * 
+ * @author Pasut Kittipapras
+ * @author Theeruth Borisuth
+ * @author Poorin Pitchayamongkol
+ */
 public class TraceRoute extends Task<String> {
 	
 	String hostname;
 	
+	/**
+	 * Constructor of the traceroute class.
+	 * @param hostname
+	 */
 	public TraceRoute(String hostname){
 		this.hostname = hostname;
 	}
-
+	
+	/**
+	 * check whether the os is Window or Macos.
+	 * @return
+	 */
 	public String trackOS() {
 		String os = System.getProperty("os.name").toLowerCase();
 		if (os.contains("win")) {
@@ -25,36 +40,10 @@ public class TraceRoute extends Task<String> {
 		}
 		return null;
 	}
-
-	// public List<String> traceRoute(String host) {
-	// List<String> output = new ArrayList<>();
-	// BufferedReader in;
-	//
-	// try {
-	// Runtime r = Runtime.getRuntime();
-	// String os = trackOS();
-	// Process p = r.exec(os+" "+host);
-	//
-	// in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-	//
-	// String line;
-	//
-	// if (p == null)
-	// output.add("Cannot connect");
-	//
-	// while ((line = in.readLine()) != null) {
-	//
-	// output.add(line);
-	// }
-	//
-	// } catch (IOException e) {
-	//
-	// System.out.println(e.toString());
-	//
-	// }
-	// return output;
-	// }
-
+	
+	/**
+	 * This method is auto generated from extending the task.
+	 */
 	@Override
 	protected String call() throws Exception {
 		String os = trackOS();

@@ -10,7 +10,8 @@ import java.net.*;
 
 /**
  *
- *
+ * This class is used to calculated the dnslookup tool.
+ * 
  * @author Pasut Kittipapras
  * @author Theeruth Borisuth
  * @author Poorin Pitchayamongkol
@@ -56,34 +57,4 @@ public class DnsLookup {
 			return "Cannot find localhost";
 		}
 	}
-
-//	/**
-//	 * Check the latency of that IP address with given 5 seconds. If it's pass 5
-//	 * seconds and it still not return the ping. That's mean its unreachable.
-//	 * 
-//	 * @param ip
-//	 * @return
-//	 */
-//	public long pingCheckerIP(String ip) {
-//		long finish;
-//		long ping;
-//
-//		try {
-//			String ipAddress = ip;
-//			InetAddress inet = InetAddress.getByName(ipAddress);
-//
-//			long start = new GregorianCalendar().getTimeInMillis();
-//
-//			if (inet.isReachable(5000)) {
-//				finish = new GregorianCalendar().getTimeInMillis();
-//				ping = finish - start;
-//				return ping;
-//			} else {
-//				System.out.println(ipAddress + " NOT reachable.");
-//			}
-//		} catch (Exception e) {
-//			System.out.println("Exception:" + e.getMessage());
-//		}
-//		return 0;
-//	}
 }

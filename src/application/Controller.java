@@ -13,6 +13,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 /**
+ * 
+ * This is the bridge between the code of the program and the user interface.
+ * 
  * @author Pasut Kittipapras
  * @author Theeruth Borisuth
  * @author Poorin Pitchayamongkol
@@ -45,7 +48,7 @@ public class Controller {
 		Font.loadFont(getClass().getResourceAsStream("/fonts/big_noodle_titling_oblique.ttf"), 14);
 		Font.loadFont(getClass().getResourceAsStream("/fonts/big_noodle_titling.ttf"), 14);
 		result.setStyle("-fx-text-inner-color: white;");
-		/** add Unit type into the menu **/
+		/** add Tool type into the menu **/
 		for (ToolType ut : factory.getToolTypes()) {
 			MenuItem currentItem = new MenuItem(ut.getName());
 			currentItem.setOnAction(new EventListener(ut));
@@ -128,12 +131,12 @@ public class Controller {
 		private ToolType type;
 
 		// constructor
-		public EventListener(ToolType units) {
-			this.type = units;
+		public EventListener(ToolType tools) {
+			this.type = tools;
 		}
 
 		/**
-		 * A method for setting up comboBox.
+		 * A method for setting up the interface.
 		 */
 		@Override
 		public void handle(ActionEvent event) {
