@@ -28,6 +28,7 @@ public class Main extends Application {
 			primaryStage.getIcons().add(new Image("file:icon.png"));
 			primaryStage.setScene(dnsLookup);
 			primaryStage.sizeToScene();
+			primaryStage.setResizable(false);
 			primaryStage.show();
 			primaryStage.setTitle("Internet Tool");
 		} catch(Exception e) {

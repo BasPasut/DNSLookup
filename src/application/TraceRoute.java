@@ -38,7 +38,9 @@ public class TraceRoute extends Task<String> {
 		} else if (os.contains("mac")) {
 			return "traceroute";
 		}
-		return null;
+		else{
+			return "traceroute";
+		}
 	}
 	
 	/**

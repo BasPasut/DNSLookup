@@ -13,9 +13,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="bodybg" stylesheets="@application.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650" prefWidth="900" styleClass="bodybg" stylesheets="@application.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <children>
-      <MenuBar prefWidth="800.0">
+      <MenuBar prefHeight="57.0" prefWidth="1000.0">
         <menus>
             <Menu fx:id="tool" mnemonicParsing="false" text="Tool" />
         </menus>
@@ -26,11 +26,11 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </MenuBar>
-      <VBox alignment="CENTER" prefHeight="140.0" prefWidth="621.0">
+      <VBox alignment="TOP_CENTER" prefHeight="140.0" prefWidth="621.0">
          <children>
-            <Text fx:id="title" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" text="DNSLookup">
+            <Text fx:id="title" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" styleClass="text-name" text="DNSLookup">
                <font>
-                  <Font name="BigNoodleTitling Oblique" size="52.0" />
+                  <Font name="Arvo" size="52.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="20.0" top="10.0" />
@@ -44,9 +44,9 @@
                   </LinearGradient>
                </fill>
             </Text>
-            <Text fx:id="hostnameShow" fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" text="Hostname">
+            <Text fx:id="hostnameShow" fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" styleClass="text-host" text="Hostname">
                <font>
-                  <Font name="BigNoodleTitling Oblique" size="39.0" />
+                  <Font name="Arvo" size="34.0" />
                </font>
             </Text>
          </children>
@@ -69,14 +69,14 @@
                   <Insets right="50.0" />
                </HBox.margin>
                <font>
-                  <Font name="BigNoodleTitling Oblique" size="22.0" />
+                  <Font size="36.0" />
                </font></Button>
             <Button fx:id="sol2" mnemonicParsing="false" prefHeight="48.0" prefWidth="174.0" text="Get My IP">
                <HBox.margin>
                   <Insets left="80.0" />
                </HBox.margin>
                <font>
-                  <Font name="BigNoodleTitling Oblique" size="22.0" />
+                  <Font size="22.0" />
                </font></Button>
          </children>
          <VBox.margin>
