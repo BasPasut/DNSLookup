@@ -8,7 +8,7 @@
 ![screenshot preview](./pic/screenshot2.png)  
 
 ## Group Members </br>
-|         Animals        |     ID     |
+|         Member        |     ID     |
 |:----------------------:|:----------:|
 | Pasut Kittiprapas      | 5910546431 |
 | Theeruth Borisuth      | 5910545701 |
